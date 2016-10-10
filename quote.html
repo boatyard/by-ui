@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Review quote | Boatyard</title>
+    <!-- Bootstrap -->
+    <link href="assets/css/bootstrap/bootstrap.min.css" rel="stylesheet" media="screen,print">
+    <!-- Shared Styles -->
+    <link href="assets/css/main.css" rel="stylesheet" media="screen,print">
+    <!-- Specific Styles -->
+    <link href="assets/css/quote.css" rel="stylesheet" media="screen,print">
+  </head>
+  <body>
+    <div class="loading">
+        <span class="helper"></span><img class="logo" src="assets/img/loader.svg" width="40" height="40">
+    </div>  
+    <div class="header">
+        <div class="container">
+            <div class="col-xs-12 text-center">
+                <img class="logo" src="assets/img/logo.svg" width="40" height="40">
+                <h1>Review Quote</h1>
+            </div>    
+        </div>
+    </div>
+    <div class="page">
+        <div class="container">
+            <div class="col-xs-12 col-sm-8 text-center center-block">
+                <h2>{ProviderName} has sent you a quote.</h2>
+            </div>    
+        </div>
+        <div class="container">
+            <div class="col-xs-12 col-sm-8 center-block">
+                <p>Order #1233:</p>
+            </div>  
+            <div class="col-xs-12 col-sm-8 service-list center-block">
+                <div class="row hidden-xs titles">
+                    <div class="col-xs-12 col-sm-6">
+                        Service
+                    </div>
+                    <div class="col-xs-12 col-sm-2">
+                        QTY
+                    </div>
+                    <div class="col-xs-12 col-sm-2">
+                        Unit Price
+                    </div>
+                    <div class="col-xs-12 col-sm-2">
+                        Total
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6">
+                        <span class="visible-xs-inline">Service: </span>Fuel
+                    </div>
+                    <div class="col-xs-12 col-sm-2">
+                        <span class="visible-xs-inline">QTY: </span>93
+                    </div>
+                    <div class="col-xs-12 col-sm-2">
+                        <span class="visible-xs-inline">Unit Price: </span>2.99
+                    </div>
+                    <div class="col-xs-12 col-sm-2">
+                        <span class="visible-xs-inline">Total: </span>100.50
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6">
+                        <span class="visible-xs-inline">Service: </span>Fuel
+                    </div>
+                    <div class="col-xs-12 col-sm-2">
+                        <span class="visible-xs-inline">QTY: </span>93
+                    </div>
+                    <div class="col-xs-12 col-sm-2">
+                        <span class="visible-xs-inline">Unit Price: </span>2.99
+                    </div>
+                    <div class="col-xs-12 col-sm-2">
+                        <span class="visible-xs-inline">Total: </span>100.50
+                    </div>
+                </div>
+            </div> 
+            <div class="col-xs-12 col-sm-8 service-totals center-block">
+                <div class="row">
+                    
+                    <div class="col-xs-12 col-sm-2">
+                        Subtotal:
+                    </div>
+                    <div class="col-xs-12 col-sm-2">
+                        0.00
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-2">
+                        Tax:
+                    </div>
+                    <div class="col-xs-12 col-sm-2">
+                        0.00
+                    </div>
+                </div>
+                <div class="row">    
+                    <div class="col-xs-12 col-sm-2">
+                        Deposit:
+                    </div>
+                    <div class="col-xs-12 col-sm-2">
+                        0.00
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-2">
+                        Total:
+                    </div>
+                    <div class="col-xs-12 col-sm-2">
+                        0.00
+                    </div>
+                </div>
+            </div> 
+        </div>
+        
+        <div class="container">
+            <div class="col-xs-12 col-sm-8 alert alert-warning  server-status hidden center-block">
+                <strong><span class="status"></span></strong>
+            </div>
+            <div class="col-xs-12 col-sm-4 col-sm-offset-2">
+                 <button type="submit" class="btn btn-lg btn-primary col-xs-12  center-block action-button" id="btnAccept">Accept</button>
+            </div>
+            <div class="col-xs-12 col-sm-4 ">
+                <button type="submit" class="btn btn-lg btn-secondary col-xs-12  center-block action-button" id="btnReject">Reject</button>
+            </div>    
+        </div>
+        
+       
+        
+    </div>
+    <div class="thankyou hidden">
+        <div class="container">
+            <div class="col-xs-12 col-sm-8 text-center center-block">
+                <h2>Thank you {customerName}, quote {orderId} has been {status}.</h2>
+                
+            </div>    
+        </div>
+    </div>
+    <div class="error-message hidden">
+        <div class="container">
+            <div class="col-xs-12 col-sm-8 text-center center-block">
+                <h2>There has been an error. Please try again.</h2>
+                
+            </div>    
+        </div>
+    </div>
+    <div class="footer">
+        
+    </div>
+    <script src="assets/js/jquery/jquery.min.js"></script>
+    <script src="assets/js/bootstrap/bootstrap.min.js"></script>
+    <!-- Shared JavaScript -->
+    <script type="text/javascript" src="assets/js/app.js"></script>
+    <!-- Specific JavaScript -->
+    <script type="text/javascript" src="assets/js/quote.js"></script>
+  </body>
+</html>

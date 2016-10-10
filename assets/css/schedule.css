@@ -1,0 +1,30 @@
+.btn-time p{
+    font-size: 1em;
+    margin: 5px 0px;
+}
+.btn-time{
+    background-color: #ffffff;
+    font-family: 'ff-regular', "Helvetica Neue",Helvetica,Arial,sans-serif;
+   
+    font-size:1.2em;
+
+    border-style:solid;
+    border-width: 1px;
+    border-color:#094359;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+    transition: background-color 300ms ease-out;
+    margin: 20px auto;
+}
+
+
+.btn-time:hover, .btn-time:focus, .time-input .selected {
+    color: #ffffff;
+    background-color: #be6b08 !important;
+    border-color:#d97600;
+}
+
+
+.no-time p{
+    margin-top:40px;
+}

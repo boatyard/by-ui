@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Review your order | Boatyard</title>
+    <!-- Bootstrap -->
+    <link href="assets/css/bootstrap/bootstrap.min.css" rel="stylesheet" media="screen,print">
+    <!-- Shared Styles -->
+    <link href="assets/css/main.css" rel="stylesheet" media="screen,print">
+    <!-- Specific Styles -->
+    <link href="assets/css/rating/star-rating.min.css" media="all" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div class="loading">
+        <span class="helper"></span><img class="logo" src="assets/img/loader.svg" width="40" height="40">
+    </div>  
+    <div class="header">
+        <div class="container">
+            <div class="col-xs-12 text-center">
+                <img class="logo" src="assets/img/logo.svg" width="40" height="40">
+                <h1>Review Your Order</h1>
+            </div>    
+        </div>
+    </div>
+    <div class="page">
+        <div class="container">
+            <div class="col-xs-12 col-sm-8 text-center center-block">
+                <h2>Your order with {ProviderName} is complete.</h2>
+                <p>Please rate your experience:</p>
+                <form role="form" data-toggle="validator" id="review-form">
+                  <div class="form-group">
+                    <input type="hidden" class="form-control" id="inputRating">
+                  </div>
+                  <div class="form-group">
+                    <label for="inputReviewText">Anything else you would like to share?</label>
+                    <textarea id="inputReviewText" placeholder="Leave your feedback. (optional)" rows="5" cols="40" name="inputReviewText"  autocomplete="off" class="form-control"></textarea>
+                  </div>
+              
+                  <div class="alert alert-warning  server-status hidden">
+                      <strong><span class="status"></span></strong>
+                  </div>
+              
+                  <button type="submit" class="btn btn-lg btn-primary col-xs-12 col-sm-6 center-block action-button" disabled>Review</button>
+                </form>
+                
+            </div>    
+        </div>
+    </div>
+    <div class="thankyou hidden">
+        <div class="container">
+            <div class="col-xs-12 col-sm-8 text-center center-block">
+                <h2>Thank you {customerName}, your review has been submitted.</h2>
+                
+            </div>    
+        </div>
+    </div>
+    <div class="error-message hidden">
+        <div class="container">
+            <div class="col-xs-12 col-sm-8 text-center center-block">
+                <h2>There has been an error. Please try again.</h2>
+                
+            </div>    
+        </div>
+    </div>
+    <div class="footer">
+        
+    </div>
+    <script src="assets/js/jquery/jquery.min.js"></script>
+    <script src="assets/js/bootstrap/bootstrap.min.js"></script>
+    <!-- Shared JavaScript -->
+    <script type="text/javascript" src="assets/js/app.js"></script>
+    <!-- Specific JavaScript -->
+    <script src="assets/js/rating/star-rating.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="assets/js/review.js"></script>
+  </body>
+</html>

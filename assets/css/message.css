@@ -1,0 +1,21 @@
+.message p.stamp{
+    font-size: 1em;
+    margin:0px;
+} 
+
+.message p.text{
+    font-size: 1.2em;
+    margin:2px 0px;
+    
+} 
+
+.message {
+    margin:25px 0px;
+    padding:20px;
+    border-radius: 6px;
+}
+
+
+div.thread > div:nth-of-type(odd) {
+    background: #f3f3f3;
+}

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Schedule your order | Boatyard</title>
+    <!-- Bootstrap -->
+    <link href="assets/css/bootstrap/bootstrap.min.css" rel="stylesheet" media="screen,print">
+    <!-- Shared Styles -->
+    <link href="assets/css/main.css" rel="stylesheet" media="screen,print">
+    <!-- Specific Styles -->
+    <link href="assets/css/schedule.css" rel="stylesheet" media="screen,print">
+    
+  </head>
+  <body>
+    <div class="loading">
+        <span class="helper"></span><img class="logo" src="assets/img/loader.svg" width="40" height="40">
+    </div>  
+    <div class="header">
+        <div class="container">
+            <div class="col-xs-12 text-center">
+                <img class="logo" src="assets/img/logo.svg" width="40" height="40">
+                <h1>Schedule Your Order</h1>
+            </div>    
+        </div>
+    </div>
+    <div class="page">
+        <div class="container">
+            <div class="col-xs-12 col-sm-8 text-center center-block">
+                <h2>{ProviderName} has  suggested times for your order.</h2>
+               
+                <form role="form" data-toggle="validator" id="schedule-form">
+                  
+                  <div class="form-group time-input">
+                    <label for="inputTime">Please select a time:</label>
+                    <button type="button" class="btn btn-lg btn-time col-xs-12 col-sm-6 center-block" data-time="10/10/2016 1:00pm"><p>Monday, October 10th</p><p>1:00pm</p></button>
+                    <button type="button" class="btn btn-lg btn-time col-xs-12 col-sm-6 center-block" data-time="10/10/2016 5:00pm"><p>Monday, October 10th</p><p>5:00pm</p></button>
+                    <button type="button" class="btn btn-lg btn-time col-xs-12 col-sm-6 center-block" data-time="10/11/2016 2:30pm" ><p>Tuesday, October 11th</p><p>2:30pm</p></button>
+                    <button type="button" class="btn btn-lg btn-time col-xs-12 col-sm-6 center-block" data-time="0">None of these times work for me.</button>
+                  </div>
+              
+                  <div class="alert alert-warning  server-status hidden">
+                      <strong><span class="status"></span></strong>
+                  </div>
+              
+                  <button type="submit" class="btn btn-lg btn-primary col-xs-12 col-sm-6 center-block action-button" disabled>Submit</button>
+                </form>
+                
+            </div>    
+        </div>
+    </div>
+    <div class="thankyou hidden">
+        <div class="container">
+            <div class="col-xs-12 col-sm-8 text-center center-block">
+                <h2>Thank you {customerName}, your order has been scheduled.</h2>
+                
+            </div>    
+        </div>
+    </div>
+    <div class="no-time hidden">
+        <div class="container">
+            <div class="col-xs-12 col-sm-8 text-center center-block">
+                <h2>Thank you {customerName}</h2>
+                <p>{providerName} has been notified and they will reach out to schedule a time convenient for you.</p>
+                
+            </div>    
+        </div>
+    </div>
+    <div class="error-message hidden">
+        <div class="container">
+            <div class="col-xs-12 col-sm-8 text-center center-block">
+                <h2>There has been an error. Please try again.</h2>
+                
+            </div>    
+        </div>
+    </div>
+    <div class="footer">
+        
+    </div>
+    <script src="assets/js/jquery/jquery.min.js"></script>
+    <script src="assets/js/bootstrap/bootstrap.min.js"></script>
+    <!-- Shared JavaScript -->
+    <script type="text/javascript" src="assets/js/app.js"></script>
+    <!-- Specific JavaScript -->
+    <script type="text/javascript" src="assets/js/schedule.js"></script>
+  </body>
+</html>
