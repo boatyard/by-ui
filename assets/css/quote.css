@@ -21,6 +21,10 @@
     margin: 10px auto;
 }
 
+.notes{
+    margin: 30px auto;
+}
+
 @media (min-width: 768px) { 
 
     .service-list .row{
