@@ -49,4 +49,49 @@ var serverInfoDisplay = function (data) {
 };
 
 
+var api = {
+    url: 'http://boatyard-sass.dev.geno.me/api/v1',
+}
+
+var queries = {};
+$.each(document.location.search.substr(1).split('&'), function(c,q){
+    var i = q.split('=');
+    if(!jQuery.isEmptyObject(q)){
+        queries[i[0].toString()] = i[1].toString();
+    }
+    
+});
+
+
+if(queries.user_token){
+    $.ajaxSetup({
+        beforeSend: function(xhr) {
+            xhr.setRequestHeader('Authorization', queries.user_token);
+        }
+    });
+    
+}
+
+
+Handlebars.registerHelper('moment', function (context, block) {
+    if (window.moment) {
+        
+        if(block.hash.format){
+            //{{moment creation_date format="MMMM YYYY"}}
+            var f = block.hash.format || "MM/DD/YYYY hh:mm A";
+            return moment(context).format(f); //had to remove Date(context)
+        }
+        
+        if(block.hash.fromNow == ""){
+            //{{moment creation_date fromNow=""}}
+            return moment(context).fromNow(); //had to remove Date(context)
+        }
+        
+        return context;
+        
+    } else {
+        return context;   //  moment plugin not available. return data as is.
+    }
+    ;
+});
 

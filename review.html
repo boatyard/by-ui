@@ -27,7 +27,7 @@
     <div class="page">
         <div class="container">
             <div class="col-xs-12 col-sm-8 text-center center-block">
-                <h2>Your order with {ProviderName} is complete.</h2>
+                <h2 id="providerTitle"></h2>
                 <p>Please rate your experience:</p>
                 <form role="form" data-toggle="validator" id="review-form">
                   <div class="form-group">
@@ -51,8 +51,7 @@
     <div class="thankyou hidden">
         <div class="container">
             <div class="col-xs-12 col-sm-8 text-center center-block">
-                <h2>Thank you {customerName}, your review has been submitted.</h2>
-                
+                <h2 id="customerName"></h2>
             </div>    
         </div>
     </div>
@@ -69,10 +68,20 @@
     </div>
     <script src="assets/js/jquery/jquery.min.js"></script>
     <script src="assets/js/bootstrap/bootstrap.min.js"></script>
+    <script type="text/javascript" src="assets/js/handlebars/handlebars.min-latest.js"></script>
     <!-- Shared JavaScript -->
     <script type="text/javascript" src="assets/js/app.js"></script>
     <!-- Specific JavaScript -->
     <script src="assets/js/rating/star-rating.min.js" type="text/javascript"></script>
     <script type="text/javascript" src="assets/js/review.js"></script>
+    
+    
+    <script id="provider-name" type="text/x-handlebars-template">
+          Your order with {{order.provider.name}} is complete.
+    </script>
+    <script id="customer-name" type="text/x-handlebars-template">
+          Thank you {{order.customer.first_name}}, your review has been submitted.
+    </script>
+    
   </body>
 </html>

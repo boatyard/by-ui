@@ -1,6 +1,5 @@
 
 var Review = {
-    
     init: function(){
         
         var that = this;
@@ -19,6 +18,7 @@ var Review = {
         //get order details
         //TODO: get from Boatyard API.
         
+        
         this.getOrderDetails();
         
         
@@ -34,31 +34,27 @@ var Review = {
     getOrderDetails: function(){
         
         var that = this;
-        
+       
         //test ajax call
-        $.ajax = this._ajaxResponse('{"status":"success-get-data"}', 'success');
+        //$.ajax = this._ajaxResponse('{"status":"success-get-data"}', 'success');
      
         $.ajax({
-            url: '[/signup.php]',
-            type: "POST",
+            url: api.url + "/external/orders/" + queries.token,
+            type: "GET", 
             //data: "rating="+encodeURIComponent($('#inputRating',reviewForm).val())+"&text=" + $('#inputReviewText',reviewForm).val(),
             success: function(data, statusText, xhr){
-              
-                var result = JSON.parse(data);
-                console.log(result)
+                
+                //fill in the variables from response into HTML
+                var source   = $("#provider-name").html();
+                var template = Handlebars.compile(source);
+                $('#providerTitle').html(template(data));
+                
+                var source   = $("#customer-name").html();
+                var template = Handlebars.compile(source);
+                $('#customerName').html(template(data));
                 
                 $( ".loading" ).fadeOut("slow");
-                /*
-                if(result.status == "subscribed"){
-                 
-                    fStatus.success();
-                }else if (result.status == 400){
-                    fStatus.error("Oh oh! Looks like you are already on the beta list.");
-                 
-                }else{
-                    fStatus.error(data.detail);
-
-                }*/
+                
             },
             error: function(data, statusText, xhr){
                 that.orderDetailsError();
@@ -90,37 +86,32 @@ var Review = {
         //console.log($('#inputRating',reviewForm).val());
         fStatus.sending();
         //console.log(that._ajaxTests);
-          
+        
+        var payload = {
+            "rating": {
+            	"score": $('#inputRating',reviewForm).val(),
+                "comments":$('#inputReviewText',reviewForm).val()
+            }
+        }; 
         //test ajax call  
-        $.ajax = this._ajaxResponse('{"status":"success"}', 'success');
+        //$.ajax = this._ajaxResponse('{"status":"success"}', 'success');
      
+       
         $.ajax({
-            url: '[/signup.php]',
+            url: api.url + "/external/orders/" + queries.token + "/rate",
             type: "POST",
-            data: "rating="+encodeURIComponent($('#inputRating',reviewForm).val())+"&text=" + $('#inputReviewText',reviewForm).val(),
+            //data: "rating="+encodeURIComponent($('#inputRating',reviewForm).val())+"&text=" + $('#inputReviewText',reviewForm).val(),
+            data: payload,
             success: function(data, statusText, xhr){
               
-                var result = JSON.parse(data);
-                //console.log(result);
                 // 
                 fStatus.success();
                 $('.page').hide();
                 $('.thankyou').removeClass('hidden');
               
-                /*
-                if(result.status == "subscribed"){
-                 
-                    fStatus.success();
-                }else if (result.status == 400){
-                    fStatus.error("Oh oh! Looks like you are already on the beta list.");
-                 
-                }else{
-                    fStatus.error(data.detail);
-
-                }*/
             },
             error: function(data, statusText, xhr){
-                console.log(data);
+                //console.log(data);
                 fStatus.error("Server Error.");
             }
      

@@ -25,14 +25,43 @@
         </div>
     </div>
     <div class="page">
+        
+    </div>
+    <div class="thankyou hidden">
         <div class="container">
             <div class="col-xs-12 col-sm-8 text-center center-block">
-                <h2>{ProviderName} has sent you the following quote for your approval.</h2>
+                <h2>Thank you {customerName}, quote {orderId} has been {status}.</h2>
+                
+            </div>    
+        </div>
+    </div>
+    <div class="error-message hidden">
+        <div class="container">
+            <div class="col-xs-12 col-sm-8 text-center center-block">
+                <h2>There has been an error. Please try again.</h2>
+                
+            </div>    
+        </div>
+    </div>
+    <div class="footer">
+        
+    </div>
+    <script src="assets/js/jquery/jquery.min.js"></script>
+    <script src="assets/js/bootstrap/bootstrap.min.js"></script>
+    <script type="text/javascript" src="assets/js/handlebars/handlebars.min-latest.js"></script>
+    <!-- Shared JavaScript -->
+    <script type="text/javascript" src="assets/js/app.js"></script>
+    <!-- Specific JavaScript -->
+    <script type="text/javascript" src="assets/js/quote.js"></script>
+    <script id="quote-template" type="text/x-handlebars-template">
+        <div class="container">
+            <div class="col-xs-12 col-sm-8 text-center center-block">
+                <h2>{{quote.provider.name}} has sent you the following quote for your approval.</h2>
             </div>    
         </div>
         <div class="container">
             <div class="col-xs-12 col-sm-8 center-block">
-                <p>Order #1233:</p>
+                <p>Order #{{quote.order_id}}:</p>
             </div>  
             <div class="col-xs-12 col-sm-8 service-list center-block">
                 <div class="row hidden-xs titles">
@@ -80,12 +109,12 @@
             </div> 
             <div class="col-xs-12 col-sm-8 service-totals center-block">
                 <div class="row">
-                    
+                
                     <div class="col-xs-3 col-sm-2">
                         Subtotal:
                     </div>
                     <div class="col-xs-8 col-sm-2">
-                        0.00
+                        {{quote.order_id}}
                     </div>
                 </div>
                 <div class="row">
@@ -93,7 +122,7 @@
                         Tax:
                     </div>
                     <div class="col-xs-8 col-sm-2">
-                        0.00
+                        {{quote.tax_amount}}
                     </div>
                 </div>
                 <div class="row">    
@@ -101,7 +130,7 @@
                         Deposit:
                     </div>
                     <div class="col-xs-8 col-sm-2">
-                        0.00
+                        {{quote.deposit}}
                     </div>
                 </div>
                 <div class="row">
@@ -109,12 +138,12 @@
                         Total:
                     </div>
                     <div class="col-xs-8 col-sm-2">
-                        0.00
+                        {{quote.total}}
                     </div>
                 </div>
             </div> 
         </div>
-        
+    
         <div class="container">
             <div class="col-xs-12 col-sm-8 center-block notes">
               <label for="inputReviewText">Notes for your provider. (optional)</label>
@@ -130,34 +159,6 @@
                 <button type="submit" class="btn btn-lg btn-secondary col-xs-12  center-block action-button" id="btnReject">Reject</button>
             </div>    
         </div>
-        
-       
-        
-    </div>
-    <div class="thankyou hidden">
-        <div class="container">
-            <div class="col-xs-12 col-sm-8 text-center center-block">
-                <h2>Thank you {customerName}, quote {orderId} has been {status}.</h2>
-                
-            </div>    
-        </div>
-    </div>
-    <div class="error-message hidden">
-        <div class="container">
-            <div class="col-xs-12 col-sm-8 text-center center-block">
-                <h2>There has been an error. Please try again.</h2>
-                
-            </div>    
-        </div>
-    </div>
-    <div class="footer">
-        
-    </div>
-    <script src="assets/js/jquery/jquery.min.js"></script>
-    <script src="assets/js/bootstrap/bootstrap.min.js"></script>
-    <!-- Shared JavaScript -->
-    <script type="text/javascript" src="assets/js/app.js"></script>
-    <!-- Specific JavaScript -->
-    <script type="text/javascript" src="assets/js/quote.js"></script>
+    </script>
   </body>
 </html>

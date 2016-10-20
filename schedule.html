@@ -28,17 +28,12 @@
     <div class="page">
         <div class="container">
             <div class="col-xs-12 col-sm-8 text-center center-block">
-                <h2>{ProviderName} has suggested the following times for your order.</h2>
-                <<!--TODO: If provider only sends one time: has suggested the following time for your order. (Please select one of the following:)(This time doesn't work for me.) -->
+                <h2 id="title"></h2>
+                
+                <!--TODO: If provider only sends one time: has suggested the following time for your order. (Please select one of the following:)(This time doesn't work for me.) -->
                 <form role="form" data-toggle="validator" id="schedule-form">
+                  <div id="timeSlots"></div>
                   
-                  <div class="form-group time-input">
-                    <label for="inputTime">Please select a time:</label>
-                    <button type="button" class="btn btn-lg btn-time col-xs-12 col-sm-6 center-block" data-time="10/10/2016 1:00pm"><p>Monday, October 10th</p><p>1:00pm</p></button>
-                    <button type="button" class="btn btn-lg btn-time col-xs-12 col-sm-6 center-block" data-time="10/10/2016 5:00pm"><p>Monday, October 10th</p><p>5:00pm</p></button>
-                    <button type="button" class="btn btn-lg btn-time col-xs-12 col-sm-6 center-block" data-time="10/11/2016 2:30pm" ><p>Tuesday, October 11th</p><p>2:30pm</p></button>
-                    <button type="button" class="btn btn-lg btn-time col-xs-12 col-sm-6 center-block" data-time="0">None of these times work for me.</button>
-                  </div>
               
                   <div class="alert alert-warning  server-status hidden">
                       <strong><span class="status"></span></strong>
@@ -53,16 +48,14 @@
     <div class="thankyou hidden">
         <div class="container">
             <div class="col-xs-12 col-sm-8 text-center center-block">
-                <h2>Thank you {customerName}, your order has been scheduled.</h2>
+                <h2 id="thankyou-message"></h2>
                 
             </div>    
         </div>
     </div>
     <div class="no-time hidden">
         <div class="container">
-            <div class="col-xs-12 col-sm-8 text-center center-block">
-                <h2>Thank you {customerName}</h2>
-                <p>{providerName} has been notified and they will reach out to schedule a time convenient for you.</p>
+            <div id="no-time-message" class="col-xs-12 col-sm-8 text-center center-block">
                 
             </div>    
         </div>
@@ -80,9 +73,34 @@
     </div>
     <script src="assets/js/jquery/jquery.min.js"></script>
     <script src="assets/js/bootstrap/bootstrap.min.js"></script>
+    <script type="text/javascript" src="assets/js/moment/moment.min.js"></script>
+    <script type="text/javascript" src="assets/js/handlebars/handlebars.min-latest.js"></script>
     <!-- Shared JavaScript -->
     <script type="text/javascript" src="assets/js/app.js"></script>
     <!-- Specific JavaScript -->
     <script type="text/javascript" src="assets/js/schedule.js"></script>
+    
+    <script id="title-template" type="text/x-handlebars-template">
+          {{provider_name}} has suggested the following {{time}} for your order.
+    </script>
+    <script id="thankyou-template" type="text/x-handlebars-template">
+          Thank you {{order.customer.first_name}}, your order has been scheduled.
+    </script>
+    <script id="no-time-template" type="text/x-handlebars-template">
+          <h2>Thank you {{order.customer.first_name}}.</h2>
+          <p>{{order.provider.name}} has been notified and they will reach out to schedule a time convenient for you.</p>
+    </script>
+    <script id="time-slots-template" type="text/x-handlebars-template">
+          <div class="form-group time-input"> 
+            <label for="inputTime">Please select one of the following:</label>
+            {{#time_slots}}
+                  <button type="button" class="btn btn-lg btn-time col-xs-12 col-sm-6 center-block" data-time="{{quote_entity_time.id}}"><p>{{moment quote_entity_time.start_date format='MMMM Do YYYY'}}</p><p>{{moment quote_entity_time.start_date format='h:mma'}}</p></button>
+            {{/time_slots}}
+            <button type="button" class="btn btn-lg btn-time col-xs-12 col-sm-6 center-block" data-time="0">{{no_time_label}}</button>
+          </div>
+    </script>
+    
+    
+    
   </body>
 </html>

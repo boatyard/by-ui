@@ -26,16 +26,19 @@ var Quote = {
         var that = this;
         
         //test ajax call
-        $.ajax = this._ajaxResponse('{"status":"success-get-data"}', 'success');
+        //$.ajax = this._ajaxResponse('{"status":"success-get-data"}', 'success');
      
         $.ajax({
-            url: '[/signup.php]',
-            type: "POST",
+            url: api.url + "/external/orders/" + queries.token + "/quotes/" + queries.quote_id,
+            type: "GET",
             //data: "rating="+encodeURIComponent($('#inputRating',reviewForm).val())+"&text=" + $('#inputReviewText',reviewForm).val(),
             success: function(data, statusText, xhr){
               
-                var result = JSON.parse(data);
-                console.log(result)
+               
+                console.log(data)
+                var source   = $("#quote-template").html();
+                var template = Handlebars.compile(source);
+                $('.page').html(template(data));
                 
                 $( ".loading" ).fadeOut("slow");
                 /*

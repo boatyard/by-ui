@@ -1,6 +1,7 @@
 
 var Schedule = {
     chosenTime: null,
+    providerName: null,
     init: function(){
         
         var that = this;
@@ -12,6 +13,7 @@ var Schedule = {
         //TODO: get from Boatyard API.
         
         this.getOrderDetails();
+        
         
         
         //get the form ready
@@ -27,7 +29,7 @@ var Schedule = {
         
         var that = this;
         
-        console.log("populating times")
+        //console.log("populating times")
         $('.btn-time').click(function(e){
             
             $('.btn-time').removeClass("selected");
@@ -50,34 +52,85 @@ var Schedule = {
         var that = this;
         
         //test ajax call
-        $.ajax = this._ajaxResponse('{"status":"success-get-data"}', 'success');
+        //$.ajax = this._ajaxResponse('{"status":"success-get-data"}', 'success');
      
         $.ajax({
-            url: '[/signup.php]',
-            type: "POST",
+            url: api.url + "/external/orders/" + queries.token,
+            type: "GET", 
             //data: "rating="+encodeURIComponent($('#inputRating',reviewForm).val())+"&text=" + $('#inputReviewText',reviewForm).val(),
             success: function(data, statusText, xhr){
-              
-                var result = JSON.parse(data);
-                console.log(result)
+                
+                //fill in the variables from response into HTML
+               
+                
+                
+                var source   = $("#thankyou-template").html();
+                var template = Handlebars.compile(source);
+                $('#thankyou-message').html(template(data));
+                
+                var source   = $("#no-time-template").html();
+                var template = Handlebars.compile(source);
+                $('#no-time-message').html(template(data));
+               
+                //console.log(data);
+                that.providerName = data.order.provider.name;
+                that.getOrderTimes();
+                //$( ".loading" ).fadeOut("slow");
+                
+                
+            },
+            error: function(data, statusText, xhr){
+                that.orderDetailsError();
+                
+            }
+     
+        });    
+        
+    },
+    
+    getOrderTimes: function(){
+        
+        var that = this;
+        
+        //test ajax call
+        //$.ajax = this._ajaxResponse('{"status":"success-get-data"}', 'success');
+     
+        $.ajax({
+            url: api.url + "/external/orders/" + queries.token + "/show_time_slots",
+            type: "GET", 
+            //data: "rating="+encodeURIComponent($('#inputRating',reviewForm).val())+"&text=" + $('#inputReviewText',reviewForm).val(),
+            success: function(data, statusText, xhr){
+                
+                var noTimeLabel = "None of these times work for me.";
+                var timeLabel = "times";
+                
+                //console.log(data.time_slots.length);
+                if(data.time_slots){
+                    if(data.time_slots.length == 1){
+                        noTimeLabel = "This time doesn't work for me.";
+                        timeLabel = "time";
+                    }
+                    
+                }
+                
+                data.no_time_label = noTimeLabel;
+                data.provider_name = that.providerName;
+                data.time = timeLabel;
+                
+                //fill in the variables from response into HTML
+                var source   = $("#time-slots-template").html();
+                var template = Handlebars.compile(source);
+                $('#timeSlots').html(template(data));
+                
+                
+                var source   = $("#title-template").html();
+                var template = Handlebars.compile(source);
+                $('#title').html(template(data));
+                
                 
                 $( ".loading" ).fadeOut("slow");
+                that.populateTimes();
                 
-                //if success to put times:
-                that.populateTimes(result);
-                
-                
-                /*
-                if(result.status == "subscribed"){
-                 
-                    fStatus.success();
-                }else if (result.status == 400){
-                    fStatus.error("Oh oh! Looks like you are already on the beta list.");
-                 
-                }else{
-                    fStatus.error(data.detail);
-
-                }*/
             },
             error: function(data, statusText, xhr){
                 that.orderDetailsError();
@@ -111,16 +164,14 @@ var Schedule = {
         //console.log(that._ajaxTests);
           
         //test ajax call  
-        $.ajax = this._ajaxResponse('{"status":"success"}', 'success');
+        //$.ajax = this._ajaxResponse('{"status":"success"}', 'success');
      
         $.ajax({
-            url: '[/signup.php]',
-            type: "POST",
+            url: api.url + "/external/orders/" + queries.token + "/confirm_schedule/" + that.chosenTime,
+            type: "PUT",
             //data: "time="+encodeURIComponent($('#inputRating',scheduleForm).val()),
             success: function(data, statusText, xhr){
               
-                var result = JSON.parse(data);
-                //console.log(result);
                 fStatus.success();
                 $('.page').hide();
                 
@@ -130,17 +181,7 @@ var Schedule = {
                 }else{
                     $('.thankyou').removeClass('hidden');
                 }
-                /*
-                if(result.status == "subscribed"){
-                 
-                    fStatus.success();
-                }else if (result.status == 400){
-                    fStatus.error("Oh oh! Looks like you are already on the beta list.");
-                 
-                }else{
-                    fStatus.error(data.detail);
-
-                }*/
+                
             },
             error: function(data, statusText, xhr){
                 console.log(data);
