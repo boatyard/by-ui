@@ -108,6 +108,12 @@ var Review = {
                 fStatus.success();
                 $('.page').hide();
                 $('.thankyou').removeClass('hidden');
+                
+                var source   = $("#thankyou-template").html();
+                var template = Handlebars.compile(source);
+                $('#thankyou-message').html(template(data));
+                
+                
               
             },
             error: function(data, statusText, xhr){

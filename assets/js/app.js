@@ -95,3 +95,21 @@ Handlebars.registerHelper('moment', function (context, block) {
     ;
 });
 
+Handlebars.registerHelper('accounting', function (context, block) {
+    if (window.accounting) {
+        
+       
+        
+        if(block.hash.formatMoney == ""){
+            //{{moment creation_date fromNow=""}}
+            return accounting.formatMoney(context, "$", 2);
+        }
+        
+        return context;
+        
+    } else {
+        return context;   //  moment plugin not available. return data as is.
+    }
+    ;
+});
+

@@ -172,6 +172,7 @@ var Schedule = {
             //data: "time="+encodeURIComponent($('#inputRating',scheduleForm).val()),
             success: function(data, statusText, xhr){
               
+               
                 fStatus.success();
                 $('.page').hide();
                 
