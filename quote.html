@@ -97,7 +97,7 @@
                           <span class="visible-xs-block">Unit Price</span>{{accounting cost formatMoney=''}}
                       </div>
                       <div class="col-xs-4 col-sm-2">
-                          <span class="visible-xs-block">Total</span>TBD
+                          <span class="visible-xs-block">Total</span>{{accounting total formatMoney=''}}
                       </div>
                 </div>
                 {{/quote.quote_entities}}
@@ -105,13 +105,14 @@
                 
             </div> 
             <div class="col-xs-12 col-sm-8 service-totals center-block">
+                
                 <div class="row">
                 
                     <div class="col-xs-3 col-sm-2">
                         Subtotal:
                     </div>
                     <div class="col-xs-8 col-sm-2">
-                        TBD
+                        {{accounting quote.subtotal formatMoney=''}}
                     </div>
                 </div>
                 <div class="row">
@@ -122,14 +123,26 @@
                         {{accounting quote.tax_amount formatMoney=''}}
                     </div>
                 </div>
-                <div class="row">    
-                    <div class="col-xs-3 col-sm-2">
-                        Deposit:
+                {{#if quote.deposit}}
+                    <div class="row">    
+                        <div class="col-xs-3 col-sm-2">
+                            Deposit:
+                        </div>
+                        <div class="col-xs-8 col-sm-2">
+                            {{accounting quote.deposit formatMoney=''}}
+                        </div>
                     </div>
-                    <div class="col-xs-8 col-sm-2">
-                        {{accounting quote.deposit formatMoney=''}}
+                {{/if}}
+                {{#if quote.discount}}
+                    <div class="row">    
+                        <div class="col-xs-3 col-sm-2">
+                            Discount:
+                        </div>
+                        <div class="col-xs-8 col-sm-2">
+                            {{accounting quote.discount formatMoney=''}}
+                        </div>
                     </div>
-                </div>
+                {{/if}}
                 <div class="row">
                     <div class="col-xs-3 col-sm-2">
                         Total:

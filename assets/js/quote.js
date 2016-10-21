@@ -27,8 +27,20 @@ var Quote = {
             type: "GET",
             //data: "rating="+encodeURIComponent($('#inputRating',reviewForm).val())+"&text=" + $('#inputReviewText',reviewForm).val(),
             success: function(data, statusText, xhr){
-              
-               
+                
+                //calculate item subtotals
+                var itemsTotal = 0;
+                
+                var items = data.quote.quote_entities;
+                for (var i in items) {
+                     var item = items[i];
+                     item.total = item.quantity * item.cost;
+                     itemsTotal += item.total;
+                     
+                }
+                
+                //calculate quote subtotal
+                data.quote.subtotal = itemsTotal;
                 
                 var source   = $("#quote-template").html();
                 var template = Handlebars.compile(source);

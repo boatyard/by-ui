@@ -165,9 +165,15 @@ var Schedule = {
           
         //test ajax call  
         //$.ajax = this._ajaxResponse('{"status":"success"}', 'success');
-     
+        
+        var callUrl = api.url + "/external/orders/" + queries.token + "/confirm_schedule/" + that.chosenTime;
+       
+        if(that.chosenTime == 0){
+            callUrl = api.url + "/external/orders/" + queries.token + "/reject_schedules";
+        }
+        
         $.ajax({
-            url: api.url + "/external/orders/" + queries.token + "/confirm_schedule/" + that.chosenTime,
+            url: callUrl,
             type: "PUT",
             //data: "time="+encodeURIComponent($('#inputRating',scheduleForm).val()),
             success: function(data, statusText, xhr){

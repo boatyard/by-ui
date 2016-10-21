@@ -98,8 +98,6 @@ Handlebars.registerHelper('moment', function (context, block) {
 Handlebars.registerHelper('accounting', function (context, block) {
     if (window.accounting) {
         
-       
-        
         if(block.hash.formatMoney == ""){
             //{{moment creation_date fromNow=""}}
             return accounting.formatMoney(context, "$", 2);
@@ -113,3 +111,16 @@ Handlebars.registerHelper('accounting', function (context, block) {
     ;
 });
 
+Handlebars.registerHelper("math", function(lvalue, operator, rvalue, options) {
+    //{{math cost "*" quantity}}
+    lvalue = parseFloat(lvalue);
+    rvalue = parseFloat(rvalue);
+        
+    return {
+        "+": lvalue + rvalue,
+        "-": lvalue - rvalue,
+        "*": lvalue * rvalue,
+        "/": lvalue / rvalue,
+        "%": lvalue % rvalue
+    }[operator];
+});

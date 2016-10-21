@@ -53,9 +53,9 @@ var Message = {
                 if(data.conversation.comments){
                      data.sender = data.conversation.comments[data.conversation.comments.length-1].commenter_type;
                 }
-                console.log(data);
+                //console.log(data);
                 that.conversation_id = data.conversation.id;
-                console.log(data.conversation.id);
+                //console.log(data.conversation.id);
                 //fill in the variables from response into HTML
                 var source   = $("#thread-template").html();
                 var template = Handlebars.compile(source);
@@ -107,7 +107,7 @@ var Message = {
         	"conversation": {
         		"message": {
         			"body": $('#inputReply',reviewForm).val(),
-        			"commenter_id": 6,
+        			"commenter_id": queries.commenter_id,
         			"commenter_type": "Customer",
         			"is_provider_note": false
         		}
