@@ -81,7 +81,7 @@
     <script id="thread-template" type="text/x-handlebars-template">
         {{#conversation.comments}}
           <div class="message">
-              <p class="stamp">{{commenter_type}} {{moment created_at fromNow=''}}:</p>
+              <p class="stamp">{{commenter_name}} {{moment created_at fromNow=''}}:</p>
               <p class="text">{{body}}</p>
           </div>
         {{/conversation.comments}}

@@ -43,7 +43,7 @@ var Message = {
             url:  api.url + "/external/orders/" + queries.token + "/conversations",
             type: "GET",
             success: function(data, statusText, xhr){
-              
+                
                 //sort latest last
                 if(data.conversation.comments){
                     data.conversation.comments.sort(function(a,b) {return (a.created_at > b.created_at) ? 1 : ((b.created_at < a.created_at) ? -1 : 0);} ); 
@@ -51,7 +51,7 @@ var Message = {
                 
                 //get last sender
                 if(data.conversation.comments){
-                     data.sender = data.conversation.comments[data.conversation.comments.length-1].commenter_type;
+                     data.sender = data.conversation.comments[data.conversation.comments.length-1].commenter_name;
                 }
                 //console.log(data);
                 that.conversation_id = data.conversation.id;
@@ -122,7 +122,7 @@ var Message = {
             success: function(data, statusText, xhr){
               
                 
-                console.log(data);
+              
                 
                 fStatus.success();
                 $('.page').hide();
