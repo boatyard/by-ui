@@ -50,7 +50,8 @@ var serverInfoDisplay = function (data) {
 
 
 var api = {
-    url: 'http://boatyard-sass.dev.geno.me/api/v1',
+    //url: 'http://boatyard-sass.dev.geno.me/api/v1',
+    url: 'https://ahoy.boatyard.com/api/v1',
 }
 
 var queries = {};
