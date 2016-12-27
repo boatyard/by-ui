@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Review quote | Boatyard</title>
+    <!-- Bootstrap -->
+    <link href="assets/css/bootstrap/bootstrap.min.css" rel="stylesheet" media="screen,print">
+    <!-- Shared Styles -->
+    <link href="assets/css/main.css" rel="stylesheet" media="screen,print">
+    <!-- Specific Styles -->
+    <link href="assets/css/order.css" rel="stylesheet" media="screen,print">
+  </head>
+  <body>
+    <div class="loading">
+        <span class="helper"></span><img class="logo" src="assets/img/loader.svg" width="40" height="40">
+    </div>  
+    <div class="header">
+        <div class="container">
+            <div class="col-xs-12 text-center">
+                <img class="logo" src="assets/img/logo.svg" width="40" height="40">
+                <h1>New Order</h1>
+            </div>    
+        </div>
+    </div>
+    <div class="page">
+        
+        
+        
+    </div>
+    <div class="thankyou hidden">
+        <div class="container">
+            <div class="col-xs-12 col-sm-8 text-center center-block">
+                <h2 id="thankyou-message"></h2>
+                
+            </div>    
+        </div>
+    </div>
+    <div class="error-message hidden">
+        <div class="container">
+            <div class="col-xs-12 col-sm-8 text-center center-block">
+                <h2>There has been an error. Please try again.</h2>
+                
+            </div>    
+        </div>
+    </div>
+    <div class="footer">
+        
+    </div>
+    <script src="assets/js/jquery/jquery.min.js"></script>
+    <script src="assets/js/bootstrap/bootstrap.min.js"></script>
+    <script type="text/javascript" src="assets/js/handlebars/handlebars.min-latest.js"></script>
+    <script type="text/javascript" src="assets/js/accounting/accounting.min.js"></script>
+    <!-- Shared JavaScript -->
+    <script type="text/javascript" src="assets/js/app.js"></script>
+    <!-- Specific JavaScript -->
+    <script type="text/javascript" src="assets/js/order.js"></script>
+    
+    <script id="thankyou-template" type="text/x-handlebars-template">
+        Thank you {{quote.customer.first_name}}, quote for order #{{quote.order.id}} has been {{quote.statusWord}}.
+    </script>
+    
+    <script id="order-accepted-template" type="text/x-handlebars-template">
+        <div class="container">
+            <div class="col-xs-12 col-sm-8  center-block summary">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h2>Order Summary</h2>
+                     </div>
+                </div>
+                <div class="items">
+                     <div class="row">
+                        <div class="col-xs-4 col-sm-2 title">
+                            Title
+                        </div>
+                        <div class="col-xs-8 col-sm-10">
+                            Value
+                        </div>
+                    </div>
+                     <div class="row">
+                        <div class="col-xs-4 col-sm-2 title">
+                            Title
+                        </div>
+                        <div class="col-xs-8 col-sm-10">
+                            Value
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h3>Special Instructions</h3>
+                     </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <p>Whatever value from special instructions</p>
+                     </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-8  center-block information">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h2>Boat Info</h2>
+                     </div>
+                </div>
+                <div class="items">
+                     <div class="row">
+                        <div class="col-xs-4 col-sm-2 title">
+                            Title
+                        </div>
+                        <div class="col-xs-8 col-sm-10">
+                            Value
+                        </div>
+                    </div>
+                     <div class="row">
+                        <div class="col-xs-4 col-sm-2 title">
+                            Title
+                        </div>
+                        <div class="col-xs-8 col-sm-10">
+                            Value
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="col-xs-12 col-sm-8  center-block information">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h2>Customer Info</h2>
+                     </div>
+                </div>
+                <div class="items">
+                     <div class="row">
+                        <div class="col-xs-4 col-sm-2 title">
+                            Title
+                        </div>
+                        <div class="col-xs-8 col-sm-10">
+                            Value
+                        </div>
+                    </div>
+                     <div class="row">
+                        <div class="col-xs-4 col-sm-2 title">
+                            Title
+                        </div>
+                        <div class="col-xs-8 col-sm-10">
+                            Value
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="col-xs-12 col-sm-4 col-sm-offset-4">
+                 <button type="submit" class="btn btn-lg btn-primary col-xs-12  center-block action-button" id="btnDashboard">Accept</button>
+            </div>
+            
+                
+        </div>
+    </script>
+    <script id="order-template" type="text/x-handlebars-template">
+        <div class="container">
+            <div class="col-xs-12 col-sm-8  center-block summary">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h2>Order Summary</h2>
+                     </div>
+                </div>
+                <div class="items">
+                     <div class="row">
+                        <div class="col-xs-4 col-sm-2 title">
+                            Title
+                        </div>
+                        <div class="col-xs-8 col-sm-10">
+                            Value
+                        </div>
+                    </div>
+                     <div class="row">
+                        <div class="col-xs-4 col-sm-2 title">
+                            Title
+                        </div>
+                        <div class="col-xs-8 col-sm-10">
+                            Value
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h3>Special Instructions</h3>
+                     </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <p>Whatever value from special instructions</p>
+                     </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-8  center-block information">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h2>Boat Info</h2>
+                     </div>
+                </div>
+                <div class="items">
+                     <div class="row">
+                        <div class="col-xs-4 col-sm-2 title">
+                            Title
+                        </div>
+                        <div class="col-xs-8 col-sm-10">
+                            Value
+                        </div>
+                    </div>
+                     <div class="row">
+                        <div class="col-xs-4 col-sm-2 title">
+                            Title
+                        </div>
+                        <div class="col-xs-8 col-sm-10">
+                            Value
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="col-xs-12 col-sm-4 col-sm-offset-2">
+                 <button type="submit" class="btn btn-lg btn-primary col-xs-12  center-block action-button" id="btnAccept">Accept</button>
+            </div>
+            <div class="col-xs-12 col-sm-4 ">
+                <button type="submit" class="btn btn-lg btn-secondary col-xs-12  center-block action-button" id="btnReject">Reject</button>
+            </div>
+            
+                
+        </div>
+    </script>
+  </body>
+</html>

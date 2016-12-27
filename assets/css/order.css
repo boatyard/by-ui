@@ -1,0 +1,48 @@
+.summary, .information{
+    
+    padding:20px;
+}
+
+.summary{
+    background: #f2f2f2;
+}
+
+.summary h2{
+    font-family: 'ff-bold', "Helvetica Neue",Helvetica,Arial,sans-serif;
+    text-transform: uppercase;
+    font-size:1.8em;
+    
+    margin: 0px 0px 15px;
+}
+
+.title{
+    font-family: 'ff-bold', "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+.items .row{
+    margin-top:8px;
+}
+
+.summary h3{
+    font-family: 'ff-bold', "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size:1em;
+    font-style: italic;
+}
+
+.summary p, .information p{
+    font-size:1em;
+}
+
+
+
+.information h2{
+    font-family: 'ff-bold', "Helvetica Neue",Helvetica,Arial,sans-serif;
+   
+    font-size:1.4em;
+    
+    margin: 0px 0px 15px;
+}
+
+.action-button{
+    margin: 10px auto;
+}

@@ -1,5 +1,5 @@
 
-var Quote = {
+var Order = {
     
     init: function(){
         
@@ -20,8 +20,17 @@ var Quote = {
         var that = this;
         
         //test ajax call
-        //$.ajax = this._ajaxResponse('{"status":"success-get-data"}', 'success');
-     
+        $.ajax = this._ajaxResponse('{"status":"success-get-data"}', 'success');
+        
+        $( ".loading" ).fadeOut("slow");
+        
+        
+        //var source   = $("#order-accepted-template").html();
+        var source   = $("#order-template").html();
+        var template = Handlebars.compile(source);
+        $('.page').html(template());
+        
+        /* 
         $.ajax({
             url: api.url + "/external/orders/" + queries.token + "/quotes/" + queries.quote_id,
             type: "GET",
@@ -64,6 +73,7 @@ var Quote = {
             }
      
         });    
+        */
         
     },
     
@@ -156,6 +166,6 @@ var Quote = {
 $(document).ready(function() {
    
    //lets get this party started
-   O.init();
+   Order.init();
    
 });
