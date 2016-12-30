@@ -50,8 +50,14 @@ var serverInfoDisplay = function (data) {
 
 
 var api = {
-    //url: 'http://boatyard-sass.dev.geno.me/api/v1',
-    url: 'https://ahoy.boatyard.com/api/v1',
+    url: 'http://boatyard-sass.stage.geno.me/api/v1',
+    //url: 'https://ahoy.boatyard.com/api/v1',
+}
+
+
+var dashboard = {
+    url: 'http://boatyard-sass.stage.geno.me',
+    //url: 'https://ahoy.boatyard.com',
 }
 
 var queries = {};
@@ -78,9 +84,10 @@ Handlebars.registerHelper('moment', function (context, block) {
     if (window.moment) {
         
         if(block.hash.format){
+            //console.log(context.valueOf());
             //{{moment creation_date format="MMMM YYYY"}}
             var f = block.hash.format || "MM/DD/YYYY hh:mm A";
-            return moment(context).format(f); //had to remove Date(context)
+            return moment(context.valueOf()).format(f); //had to remove Date(context)
         }
         
         if(block.hash.fromNow == ""){
@@ -124,4 +131,17 @@ Handlebars.registerHelper("math", function(lvalue, operator, rvalue, options) {
         "/": lvalue / rvalue,
         "%": lvalue % rvalue
     }[operator];
+});
+
+
+
+Handlebars.registerHelper('spacer', function (context, block) {
+        return context.replace(/_/g, ' ');
+});
+
+Handlebars.registerHelper('if_eq', function(a, b, opts) {
+    if(a == b) // Or === depending on your needs
+        return opts.fn(this);
+    else
+        return opts.inverse(this);
 });

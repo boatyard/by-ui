@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Review quote | Boatyard</title>
+    <title>Order | Boatyard</title>
     <!-- Bootstrap -->
     <link href="assets/css/bootstrap/bootstrap.min.css" rel="stylesheet" media="screen,print">
     <!-- Shared Styles -->
@@ -29,10 +29,11 @@
         
         
     </div>
-    <div class="thankyou hidden">
+    <div class="rejected hidden">
         <div class="container">
             <div class="col-xs-12 col-sm-8 text-center center-block">
-                <h2 id="thankyou-message"></h2>
+                <h2>Maybe next time....</h2>
+                <p>You have successfully rejected this order.</p>
                 
             </div>    
         </div>
@@ -50,6 +51,7 @@
     </div>
     <script src="assets/js/jquery/jquery.min.js"></script>
     <script src="assets/js/bootstrap/bootstrap.min.js"></script>
+     <script type="text/javascript" src="assets/js/moment/moment.min.js"></script>
     <script type="text/javascript" src="assets/js/handlebars/handlebars.min-latest.js"></script>
     <script type="text/javascript" src="assets/js/accounting/accounting.min.js"></script>
     <!-- Shared JavaScript -->
@@ -61,102 +63,6 @@
         Thank you {{quote.customer.first_name}}, quote for order #{{quote.order.id}} has been {{quote.statusWord}}.
     </script>
     
-    <script id="order-accepted-template" type="text/x-handlebars-template">
-        <div class="container">
-            <div class="col-xs-12 col-sm-8  center-block summary">
-                <div class="row">
-                    <div class="col-xs-12">
-                        <h2>Order Summary</h2>
-                     </div>
-                </div>
-                <div class="items">
-                     <div class="row">
-                        <div class="col-xs-4 col-sm-2 title">
-                            Title
-                        </div>
-                        <div class="col-xs-8 col-sm-10">
-                            Value
-                        </div>
-                    </div>
-                     <div class="row">
-                        <div class="col-xs-4 col-sm-2 title">
-                            Title
-                        </div>
-                        <div class="col-xs-8 col-sm-10">
-                            Value
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-12">
-                        <h3>Special Instructions</h3>
-                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-12">
-                        <p>Whatever value from special instructions</p>
-                     </div>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-8  center-block information">
-                <div class="row">
-                    <div class="col-xs-12">
-                        <h2>Boat Info</h2>
-                     </div>
-                </div>
-                <div class="items">
-                     <div class="row">
-                        <div class="col-xs-4 col-sm-2 title">
-                            Title
-                        </div>
-                        <div class="col-xs-8 col-sm-10">
-                            Value
-                        </div>
-                    </div>
-                     <div class="row">
-                        <div class="col-xs-4 col-sm-2 title">
-                            Title
-                        </div>
-                        <div class="col-xs-8 col-sm-10">
-                            Value
-                        </div>
-                    </div>
-                </div>
-                
-            </div>
-            <div class="col-xs-12 col-sm-8  center-block information">
-                <div class="row">
-                    <div class="col-xs-12">
-                        <h2>Customer Info</h2>
-                     </div>
-                </div>
-                <div class="items">
-                     <div class="row">
-                        <div class="col-xs-4 col-sm-2 title">
-                            Title
-                        </div>
-                        <div class="col-xs-8 col-sm-10">
-                            Value
-                        </div>
-                    </div>
-                     <div class="row">
-                        <div class="col-xs-4 col-sm-2 title">
-                            Title
-                        </div>
-                        <div class="col-xs-8 col-sm-10">
-                            Value
-                        </div>
-                    </div>
-                </div>
-                
-            </div>
-            <div class="col-xs-12 col-sm-4 col-sm-offset-4">
-                 <button type="submit" class="btn btn-lg btn-primary col-xs-12  center-block action-button" id="btnDashboard">Accept</button>
-            </div>
-            
-                
-        </div>
-    </script>
     <script id="order-template" type="text/x-handlebars-template">
         <div class="container">
             <div class="col-xs-12 col-sm-8  center-block summary">
@@ -166,33 +72,71 @@
                      </div>
                 </div>
                 <div class="items">
+                    {{#order.order_entities}}    
                      <div class="row">
                         <div class="col-xs-4 col-sm-2 title">
-                            Title
+                            Service
                         </div>
                         <div class="col-xs-8 col-sm-10">
-                            Value
-                        </div>
+                            {{service.name}}
+                        </div>     
                     </div>
-                     <div class="row">
-                        <div class="col-xs-4 col-sm-2 title">
-                            Title
-                        </div>
-                        <div class="col-xs-8 col-sm-10">
-                            Value
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-12">
-                        <h3>Special Instructions</h3>
+                    {{#each detail}} 
+                        {{#if_eq @key "special_instructions"}}
+                        {{else}}
+                             <div class="row">
+                                <div class="col-xs-4 col-sm-2 title">
+                                 
+                                     {{spacer @key}}
+                                </div>
+                                <div class="col-xs-8 col-sm-10">
+                                  
+                                   {{#if_eq @key "day"}}
+                                       {{moment this format='MMMM Do YYYY'}}
+                                   {{else}}
+                                        {{this}}
+                                       
+                                    {{/if_eq}}
+                                   
+                                </div>     
+                            </div>
+                        {{/if_eq}}
+                          
+                    {{/each}}
+                    {{/order.order_entities}}
+                     
+                      <div class="row">
+                         <div class="col-xs-4 col-sm-2 title">
+                     
+                              Location
+                         </div>
+                         <div class="col-xs-8 col-sm-10">
+                            {{order.full_address}}
+                         </div>     
                      </div>
+                     
                 </div>
-                <div class="row">
-                    <div class="col-xs-12">
-                        <p>Whatever value from special instructions</p>
-                     </div>
-                </div>
+                {{#order.order_entities}}    
+                 
+                 
+                 
+                {{#each detail}} 
+                        {{#if_eq @key "special_instructions"}}
+                            <div class="row"> <!-- {{spacer @key}} : removes _ and replaces with space -->
+                                <div class="col-xs-12">
+                                    <h3>{{spacer @key}}</h3>
+                                 </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <p> {{this}}</p>
+                                 </div>
+                            </div>
+                        {{/if_eq}}
+                        
+                {{/each}}
+                {{/order.order_entities}}
+
             </div>
             <div class="col-xs-12 col-sm-8  center-block information">
                 <div class="row">
@@ -203,33 +147,92 @@
                 <div class="items">
                      <div class="row">
                         <div class="col-xs-4 col-sm-2 title">
-                            Title
+                            Name
                         </div>
                         <div class="col-xs-8 col-sm-10">
-                            Value
+                            {{order.boat_name}}
                         </div>
                     </div>
                      <div class="row">
                         <div class="col-xs-4 col-sm-2 title">
-                            Title
+                            Make
                         </div>
                         <div class="col-xs-8 col-sm-10">
-                            Value
+                            {{order.boat_make}}
+                        </div>
+                    </div>
+                     <div class="row">
+                        <div class="col-xs-4 col-sm-2 title">
+                            Length
+                        </div>
+                        <div class="col-xs-8 col-sm-10">
+                            {{order.boat_length}}
                         </div>
                     </div>
                 </div>
                 
             </div>
+             {{#if_eq order.status "awaiting_acceptance"}}
+            {{else}}
+            <div class="col-xs-12 col-sm-8  center-block information">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h2>Customer Info</h2>
+                     </div>
+                </div>
+                <div class="items">
+                     <div class="row">
+                        <div class="col-xs-4 col-sm-2 title">
+                            Name
+                        </div>
+                        <div class="col-xs-8 col-sm-10">
+                            
+                            {{order.customer.first_name}} {{order.customer.last_name}}
+                        </div>
+                    </div>
+                     <div class="row">
+                        <div class="col-xs-4 col-sm-2 title">
+                            Phone
+                        </div>
+                        <div class="col-xs-8 col-sm-10">
+                            <a href="tel:{{order.user.phone_number}}" >{{order.customer.phone_number}}</a>
+                        </div>
+                    </div>
+                     <div class="row">
+                        <div class="col-xs-4 col-sm-2 title">
+                            Email
+                        </div>
+                        <div class="col-xs-8 col-sm-10">
+                            {{order.customer.email}}
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+             {{/if_eq}}
+             <div class="customer_info"></div>
+             
+            {{#if_eq order.status "awaiting_acceptance"}}
+                <div class="col-xs-12 col-sm-8 alert alert-warning  server-status hidden center-block">
+                                <strong><span class="status"></span></strong>
+                            </div>
+                 <div class="col-xs-12 col-sm-4 col-sm-offset-2">
+                      <button type="submit" class="btn btn-lg btn-primary col-xs-12  center-block action-button" id="btnAccept">Accept</button>
+                 </div>
+                 <div class="col-xs-12 col-sm-4 ">
+                     <button type="submit" class="btn btn-lg btn-secondary col-xs-12  center-block action-button" id="btnReject">Reject</button>
+                 </div>
+            {{else}}
+                <div class="col-xs-12 col-sm-4 col-sm-offset-4">
+                     <button type="submit" class="btn btn-lg btn-primary col-xs-12  center-block action-button" id="btnDashboard">View Order in Dashboard</button>
+                </div>
+               
+            {{/if_eq}}
             
-            <div class="col-xs-12 col-sm-4 col-sm-offset-2">
-                 <button type="submit" class="btn btn-lg btn-primary col-xs-12  center-block action-button" id="btnAccept">Accept</button>
-            </div>
-            <div class="col-xs-12 col-sm-4 ">
-                <button type="submit" class="btn btn-lg btn-secondary col-xs-12  center-block action-button" id="btnReject">Reject</button>
-            </div>
             
                 
         </div>
     </script>
+    
   </body>
 </html>

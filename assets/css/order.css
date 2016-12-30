@@ -27,6 +27,7 @@
     font-family: 'ff-bold', "Helvetica Neue",Helvetica,Arial,sans-serif;
     font-size:1em;
     font-style: italic;
+    text-transform: capitalize
 }
 
 .summary p, .information p{
@@ -45,4 +46,8 @@
 
 .action-button{
     margin: 10px auto;
+}
+
+.title{
+  text-transform: capitalize
 }
