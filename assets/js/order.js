@@ -91,6 +91,8 @@ var Order = {
           
             url: api.url + "/external/orders/" + queries.token + option,
             type: "PUT",
+            data: {"order":{"status":"accepted"}},
+            dataType: "json",
             success: function(data, statusText, xhr){
 
                 fStatus.success();
