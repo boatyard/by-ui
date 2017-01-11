@@ -81,9 +81,13 @@ var Order = {
         //test ajax call  
         //$.ajax = this._ajaxResponse('{"status":"success"}', 'success');
         var option = "";
+        var data = null;
         
         if(response == 'reject'){
             option = "/reject";
+        }else{
+            data = {"order":{"status":"accepted"}}
+            
         } 
          
          
@@ -91,7 +95,7 @@ var Order = {
           
             url: api.url + "/external/orders/" + queries.token + option,
             type: "PUT",
-            data: {"order":{"status":"accepted"}},
+            data: data,
             dataType: "json",
             success: function(data, statusText, xhr){
 

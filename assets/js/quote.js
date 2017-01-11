@@ -156,6 +156,6 @@ var Quote = {
 $(document).ready(function() {
    
    //lets get this party started
-   O.init();
+   Quote.init();
    
 });
